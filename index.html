@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
     <!-- Navigation -->
@@ -566,10 +566,15 @@
                     </ul>
                 </div>
 
-                <div class="book-calendar animate-on-scroll">
-                    <div class="calendar-embed">
-                        <!-- Cal.com inline embed -->
-                        <div id="cal-embed" style="width:100%;height:100%;overflow:scroll"></div>
+                <div class="book-calendar">
+                    <div class="calendar-cta">
+                        <button data-cal-link="abudiauto/strategy-call" data-cal-config='{"theme":"dark"}' class="btn btn-primary btn-large cal-popup-btn">
+                            <span>Schedule Your Free Audit</span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </button>
+                        <p class="calendar-note">30-minute call • No commitment</p>
                     </div>
                 </div>
             </div>
@@ -747,25 +752,15 @@
     <!-- Scripts - deferred for performance -->
     <script src="script.js" defer></script>
 
-    <!-- Cal.com Embed - loads after page -->
+    <!-- Cal.com Popup Script -->
     <script type="text/javascript">
         (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
         Cal("init", {origin:"https://cal.com"});
-        Cal("inline", {
-            elementOrSelector:"#cal-embed",
-            calLink: "abudiauto/strategy-call",
-            layout: "month_view",
-            config: {
-                theme: "dark"
-            }
-        });
         Cal("ui", {
             theme: "dark",
             styles: {
                 branding: { brandColor: "#6B8CA8" }
-            },
-            hideEventTypeDetails: false,
-            layout: "month_view"
+            }
         });
     </script>
 </body>

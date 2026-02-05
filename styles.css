@@ -995,8 +995,34 @@ section {
     overflow: hidden;
 }
 
-.calendar-embed #cal-embed {
-    min-height: 580px;
+/* Calendar CTA - Popup Button */
+.calendar-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+}
+
+.cal-popup-btn {
+    font-size: 1.125rem;
+    padding: 1.25rem 2.5rem;
+    gap: 0.75rem;
+}
+
+.cal-popup-btn .btn-arrow {
+    width: 24px;
+    height: 24px;
+}
+
+.calendar-note {
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
 }
 
 /* --------------------------------------------------------------------------
