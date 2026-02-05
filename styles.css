@@ -926,22 +926,10 @@ section {
    -------------------------------------------------------------------------- */
 .book {
     background: var(--color-bg-elevated);
+    content-visibility: auto;
+    contain-intrinsic-size: 0 800px;
 }
 
-.book-bg {
-    position: absolute;
-    inset: 0;
-}
-
-.book-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, rgba(107, 140, 168, 0.05) 0%, transparent 50%);
-}
 
 .book-content {
     display: grid;
@@ -1012,8 +1000,13 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   FAQ Section
+   FAQ Section - Static for performance
    -------------------------------------------------------------------------- */
+.faq {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+}
+
 .faq-grid {
     max-width: 800px;
     margin: 0 auto;
@@ -1027,10 +1020,8 @@ section {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
     overflow: hidden;
-    transition: border-color var(--transition-fast);
 }
 
-.faq-item:hover,
 .faq-item.active {
     border-color: var(--color-primary);
 }
@@ -1052,7 +1043,6 @@ section {
     width: 24px;
     height: 24px;
     color: var(--color-text-muted);
-    transition: transform var(--transition-base);
     flex-shrink: 0;
 }
 
@@ -1062,13 +1052,11 @@ section {
 }
 
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    display: none;
 }
 
 .faq-item.active .faq-answer {
-    max-height: 300px;
+    display: block;
 }
 
 .faq-answer p {
@@ -1078,21 +1066,17 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   Footer
+   Footer - Static for performance
    -------------------------------------------------------------------------- */
 .footer {
     position: relative;
     background: var(--color-bg);
     padding: 5rem 0 2rem;
     border-top: 1px solid var(--color-border);
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
 }
 
-.footer-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    opacity: 0.3;
-}
 
 .footer-main {
     display: grid;
@@ -1135,7 +1119,6 @@ section {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     color: var(--color-text-muted);
-    transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .social-link:hover {
