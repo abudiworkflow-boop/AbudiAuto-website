@@ -189,4 +189,49 @@
         }
     }, 250), { passive: true });
 
+    // --------------------------------------------------------------------------
+    // Exit Intent Popup
+    // --------------------------------------------------------------------------
+    const exitPopup = document.getElementById('exitPopup');
+    const exitOverlay = document.getElementById('exitOverlay');
+    const exitClose = document.getElementById('exitClose');
+    const exitDismiss = document.getElementById('exitDismiss');
+
+    if (exitPopup) {
+        let exitShown = sessionStorage.getItem('exitPopupShown');
+
+        function showExitPopup() {
+            if (!exitShown) {
+                exitPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                sessionStorage.setItem('exitPopupShown', 'true');
+                exitShown = true;
+            }
+        }
+
+        function hideExitPopup() {
+            exitPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Desktop: detect mouse leaving viewport
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY < 10) {
+                showExitPopup();
+            }
+        });
+
+        // Close handlers
+        if (exitOverlay) exitOverlay.addEventListener('click', hideExitPopup);
+        if (exitClose) exitClose.addEventListener('click', hideExitPopup);
+        if (exitDismiss) exitDismiss.addEventListener('click', hideExitPopup);
+
+        // Close on escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && exitPopup.classList.contains('active')) {
+                hideExitPopup();
+            }
+        });
+    }
+
 })();

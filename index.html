@@ -749,6 +749,30 @@
         </div>
     </footer>
 
+    <!-- Exit Intent Popup -->
+    <div class="exit-popup" id="exitPopup">
+        <div class="exit-popup-overlay" id="exitOverlay"></div>
+        <div class="exit-popup-modal">
+            <button class="exit-popup-close" id="exitClose" aria-label="Close popup">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="exit-popup-content">
+                <span class="exit-popup-tag">Wait!</span>
+                <h3 class="exit-popup-title">Get Your Free<br><span class="text-gradient">Automation Audit</span></h3>
+                <p class="exit-popup-text">Before you go, let us show you exactly how much time and money you're leaving on the table.</p>
+                <button data-cal-link="abudiauto/strategy-call" data-cal-config='{"theme":"dark"}' class="btn btn-primary exit-popup-cta">
+                    <span>Book Free 30-Min Audit</span>
+                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <button class="exit-popup-dismiss" id="exitDismiss">No thanks, I'll figure it out myself</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts - deferred for performance -->
     <script src="script.js" defer></script>
 
@@ -763,5 +787,8 @@
             }
         });
     </script>
+
+    <!-- BuildMyAgent Chat Widget -->
+    <script src="https://www.buildmyagent.io/widget/6985d6478d7a799e930621e8/widget-professional.js?widgetId=6985d6478d7a799e930621e8"></script>
 </body>
 </html>
