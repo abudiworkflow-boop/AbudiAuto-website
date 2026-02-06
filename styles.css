@@ -1363,6 +1363,15 @@ section {
 
     .nav-toggle { display: flex; }
 
+    /* Calendar booking section mobile fix */
+    .calendar-cta {
+        padding: 2rem 1.5rem;
+    }
+    .cal-popup-btn {
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
+    }
+
     .nav-menu {
         position: fixed;
         top: 0;
@@ -1407,6 +1416,32 @@ section {
     .btn { width: 100%; }
     .automation-grid { grid-template-columns: 1fr; }
     .section-title { font-size: 1.5rem; }
+
+    /* Calendar booking section small mobile fix */
+    .book-content { gap: 2rem; }
+    .book-title { font-size: 1.5rem; }
+    .book-subtitle { font-size: 0.9375rem; }
+    .book-calendar {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .calendar-cta {
+        padding: 1.5rem 1rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .cal-popup-btn {
+        font-size: 0.9375rem;
+        padding: 1rem 1.25rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .cal-popup-btn .btn-arrow {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
