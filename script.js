@@ -145,27 +145,27 @@
     }
 
     // --------------------------------------------------------------------------
-    // Smooth scroll for anchor links
+    // Intersection Observer: Technical Architecture cards fade-in on scroll
     // --------------------------------------------------------------------------
-    document.addEventListener('click', function(e) {
-        const link = e.target.closest('a[href^="#"]');
-        if (!link) return;
+    const archCards = document.querySelectorAll('[data-arch-card]');
 
-        const href = link.getAttribute('href');
-        if (href === '#') return;
-
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            const navHeight = nav.offsetHeight;
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
+    if (archCards.length > 0) {
+        const archObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    archObserver.unobserve(entry.target);
+                }
             });
-        }
-    });
+        }, {
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.15
+        });
+
+        archCards.forEach(function(card) {
+            archObserver.observe(card);
+        });
+    }
 
     // --------------------------------------------------------------------------
     // Close mobile menu on escape
