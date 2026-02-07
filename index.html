@@ -7,10 +7,12 @@
     <meta name="keywords" content="AI automation, business automation, n8n, Claude AI, workflow automation, digital transformation">
     <title>AbudiAuto | AI Automation Agency</title>
 
-    <!-- Fonts - only load essential weights -->
+    <!-- Fonts: Clash Display (headings) + Inter (body) -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -27,6 +29,9 @@
     <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
+    <!-- Noise texture overlay - premium film feel -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-container">
@@ -74,11 +79,13 @@
             </p>
 
             <div class="hero-cta hero-animate">
-                <a href="#book" class="btn btn-primary">
-                    <span>Request a Systems Audit</span>
-                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+                <a href="#book" class="btn-cta-wrap btn-cta-magnetic" id="heroCta">
+                    <span class="btn btn-primary btn-primary-glow">
+                        <span>Request a Systems Audit</span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
                 </a>
                 <a href="#architecture" class="btn btn-secondary">Technical Architecture</a>
             </div>

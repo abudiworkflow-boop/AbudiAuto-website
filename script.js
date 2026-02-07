@@ -145,6 +145,38 @@
     }
 
     // --------------------------------------------------------------------------
+    // Magnetic CTA: primary button follows cursor slightly (premium feel)
+    // --------------------------------------------------------------------------
+    const heroCta = document.getElementById('heroCta');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (heroCta && !prefersReducedMotion) {
+        const inner = heroCta.querySelector('.btn-primary-glow');
+        const strength = 12;
+        const radius = 80;
+
+        heroCta.addEventListener('mouseenter', function() {
+            heroCta.classList.add('magnetic-active');
+        });
+        heroCta.addEventListener('mouseleave', function() {
+            heroCta.classList.remove('magnetic-active');
+            if (inner) {
+                inner.style.transform = '';
+            }
+        });
+        heroCta.addEventListener('mousemove', function(e) {
+            if (!inner) return;
+            const rect = heroCta.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const dist = Math.min(radius, Math.hypot(x, y));
+            const factor = (1 - dist / radius) * strength;
+            const tx = (x / radius) * factor;
+            const ty = (y / radius) * factor;
+            inner.style.transform = 'translate(' + tx + 'px, ' + ty + 'px)';
+        });
+    }
+
+    // --------------------------------------------------------------------------
     // Intersection Observer: Technical Architecture cards fade-in on scroll
     // --------------------------------------------------------------------------
     const archCards = document.querySelectorAll('[data-arch-card]');
