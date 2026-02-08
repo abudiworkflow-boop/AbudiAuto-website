@@ -266,4 +266,171 @@
         });
     }
 
+    // --------------------------------------------------------------------------
+    // LIVE EFFECTS - Make the site feel alive!
+    // --------------------------------------------------------------------------
+
+    // Cursor trail particle effect
+    if (!prefersReducedMotion && window.innerWidth > 768) {
+        const particles = [];
+        const maxParticles = 20;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+                this.life = 100;
+                this.element = document.createElement('div');
+                this.element.className = 'cursor-particle';
+                this.element.style.cssText = `
+                    position: fixed;
+                    width: ${this.size}px;
+                    height: ${this.size}px;
+                    background: radial-gradient(circle, rgba(107, 140, 168, 0.8), transparent);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    left: ${this.x}px;
+                    top: ${this.y}px;
+                `;
+                document.body.appendChild(this.element);
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life -= 2;
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+                this.element.style.opacity = this.life / 100;
+            }
+
+            remove() {
+                this.element.remove();
+            }
+        }
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (particles.length < maxParticles && Math.random() > 0.7) {
+                particles.push(new Particle(mouseX, mouseY));
+            }
+        });
+
+        function animateParticles() {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                if (particles[i].life <= 0) {
+                    particles[i].remove();
+                    particles.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    }
+
+    // Parallax effect on hero
+    const heroContent = document.querySelector('.hero-content');
+    const heroBg = document.querySelector('.hero-bg');
+
+    if (heroContent && heroBg && !prefersReducedMotion) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.scrollY;
+            if (scrolled < window.innerHeight) {
+                heroContent.style.transform = 'translateY(' + scrolled * 0.4 + 'px)';
+                heroBg.style.transform = 'translateY(' + scrolled * 0.2 + 'px)';
+            }
+        }, { passive: true });
+    }
+
+    // 3D tilt effect on cards
+    const tiltCards = document.querySelectorAll('.case-card, .transform-card, .testimonial-card');
+
+    if (tiltCards.length > 0 && !prefersReducedMotion) {
+        tiltCards.forEach(function(card) {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+            });
+        });
+    }
+
+    // Floating animation for stats
+    const statNumbers = document.querySelectorAll('.stat-number, .proof-number');
+
+    if (statNumbers.length > 0 && !prefersReducedMotion) {
+        statNumbers.forEach(function(stat, index) {
+            stat.style.animation = `float ${3 + index * 0.3}s ease-in-out infinite`;
+        });
+    }
+
+    // Interactive glow effect that follows mouse on sections
+    const glowSections = document.querySelectorAll('.case-card, .tech-category, .transform-card');
+
+    if (glowSections.length > 0 && !prefersReducedMotion) {
+        glowSections.forEach(function(section) {
+            section.addEventListener('mousemove', function(e) {
+                const rect = section.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                section.style.setProperty('--mouse-x', x + 'px');
+                section.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+    }
+
+    // Smooth reveal animation for tech items
+    const techItems = document.querySelectorAll('.tech-item');
+
+    if (techItems.length > 0) {
+        const techObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry, index) {
+                if (entry.isIntersecting) {
+                    setTimeout(function() {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 50);
+                    techObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        techItems.forEach(function(item) {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.4s ease';
+            techObserver.observe(item);
+        });
+    }
+
+    // Animated gradient background shift
+    const hero = document.querySelector('.hero');
+    if (hero && !prefersReducedMotion) {
+        let gradientPos = 0;
+        setInterval(function() {
+            gradientPos += 0.5;
+            hero.style.setProperty('--gradient-angle', gradientPos + 'deg');
+        }, 50);
+    }
+
 })();
