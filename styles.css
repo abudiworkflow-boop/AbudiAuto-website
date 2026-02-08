@@ -328,6 +328,7 @@ ul, ol { list-style: none; }
 .hero-bg {
     position: absolute;
     inset: 0;
+    will-change: transform;
     /* Ultra-dissolved, barely-visible gradient */
     background:
         radial-gradient(ellipse 80% 50% at 20% 40%, rgba(107, 140, 168, 0.03) 0%, transparent 60%),
@@ -352,7 +353,8 @@ ul, ol { list-style: none; }
     width: 100%;
     height: 60%;
     background: radial-gradient(ellipse at center, rgba(107, 140, 168, 0.04) 0%, transparent 70%);
-    filter: blur(80px);
+    filter: blur(40px);
+    will-change: opacity;
 }
 
 .hero-content {
@@ -361,6 +363,7 @@ ul, ol { list-style: none; }
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
+    will-change: transform;
 }
 
 .hero-badge {
@@ -375,7 +378,7 @@ ul, ol { list-style: none; }
     font-weight: 500;
     color: var(--color-primary-light);
     margin-bottom: 2rem;
-    transition: all var(--transition-smooth);
+    transition: all var(--transition-base);
     backdrop-filter: blur(8px);
 }
 

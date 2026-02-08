@@ -267,86 +267,31 @@
     }
 
     // --------------------------------------------------------------------------
-    // LIVE EFFECTS - Make the site feel alive!
+    // LIVE EFFECTS - Lightweight and smooth!
     // --------------------------------------------------------------------------
 
-    // Cursor trail particle effect
-    if (!prefersReducedMotion && window.innerWidth > 768) {
-        const particles = [];
-        const maxParticles = 20;
-        let mouseX = 0;
-        let mouseY = 0;
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-                this.life = 100;
-                this.element = document.createElement('div');
-                this.element.className = 'cursor-particle';
-                this.element.style.cssText = `
-                    position: fixed;
-                    width: ${this.size}px;
-                    height: ${this.size}px;
-                    background: radial-gradient(circle, rgba(107, 140, 168, 0.8), transparent);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 9999;
-                    left: ${this.x}px;
-                    top: ${this.y}px;
-                `;
-                document.body.appendChild(this.element);
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life -= 2;
-                this.element.style.left = this.x + 'px';
-                this.element.style.top = this.y + 'px';
-                this.element.style.opacity = this.life / 100;
-            }
-
-            remove() {
-                this.element.remove();
-            }
-        }
-
-        document.addEventListener('mousemove', function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            if (particles.length < maxParticles && Math.random() > 0.7) {
-                particles.push(new Particle(mouseX, mouseY));
-            }
-        });
-
-        function animateParticles() {
-            for (let i = particles.length - 1; i >= 0; i--) {
-                particles[i].update();
-                if (particles[i].life <= 0) {
-                    particles[i].remove();
-                    particles.splice(i, 1);
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-    }
-
-    // Parallax effect on hero
+    // Optimized parallax effect on hero - throttled with RAF
     const heroContent = document.querySelector('.hero-content');
     const heroBg = document.querySelector('.hero-bg');
 
     if (heroContent && heroBg && !prefersReducedMotion) {
-        window.addEventListener('scroll', function() {
-            const scrolled = window.scrollY;
+        let ticking = false;
+        let lastScrollY = 0;
+
+        function updateParallax() {
+            const scrolled = lastScrollY;
             if (scrolled < window.innerHeight) {
-                heroContent.style.transform = 'translateY(' + scrolled * 0.4 + 'px)';
-                heroBg.style.transform = 'translateY(' + scrolled * 0.2 + 'px)';
+                heroContent.style.transform = 'translateY(' + scrolled * 0.3 + 'px)';
+                heroBg.style.transform = 'translateY(' + scrolled * 0.15 + 'px)';
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            lastScrollY = window.scrollY;
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
             }
         }, { passive: true });
     }
@@ -421,16 +366,6 @@
             item.style.transition = 'all 0.4s ease';
             techObserver.observe(item);
         });
-    }
-
-    // Animated gradient background shift
-    const hero = document.querySelector('.hero');
-    if (hero && !prefersReducedMotion) {
-        let gradientPos = 0;
-        setInterval(function() {
-            gradientPos += 0.5;
-            hero.style.setProperty('--gradient-angle', gradientPos + 'deg');
-        }, 50);
     }
 
 })();
