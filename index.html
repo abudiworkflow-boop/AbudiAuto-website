@@ -119,16 +119,86 @@
         "knowsAbout": ["Artificial Intelligence", "Business Automation", "n8n", "Claude AI", "Azure", "Workflow Design"]
     }
     </script>
+
+    <!-- Structured Data: FAQ (enables Google rich results) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How long does implementation typically take?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most implementations take 6-8 weeks from kickoff to full deployment. Simple automations can be live in 2-3 weeks, while complete system overhauls may take 10-12 weeks. We always start with quick wins so you see value immediately."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What tools and platforms do you work with?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We specialize in n8n for workflow automation, Claude AI for intelligent decision-making, and Azure for infrastructure. We integrate with virtually any platform—CRMs, ERPs, email providers, databases, APIs, and custom applications. If it has an API, we can automate it."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How is scope and investment determined?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We provide a detailed proposal after the systems audit. Scope and investment are based on your current infrastructure, integration complexity, and the technical architecture required. Most clients see strong ROI within the first quarter."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you provide ongoing support?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. We offer monthly retainer packages that include 24/7 monitoring, maintenance, optimization, and expansion of your automation systems. Most clients stay with us long-term because automation needs evolve as businesses grow."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What if automation breaks or fails?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We build with redundancy and self-healing in mind. All workflows have error handling, fallback procedures, and alerting. If something does break, our monitoring catches it immediately—often before you even notice. Support clients get priority response times."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you automate [specific thing]?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Probably yes! If it's repetitive, rule-based, or involves moving data between systems, it can likely be automated. Even complex decision-making can be handled by AI agents. Book a free audit and we'll tell you exactly what's possible for your specific situation."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Search Engine Verification -->
+    <meta name="msvalidate.01" content="29FBC0ED4C473D59AC0C769B230B3F06">
+    <!-- Google Search Console: uncomment and add your code -->
+    <!-- <meta name="google-site-verification" content="YOUR_CODE"> -->
+
+    <!-- Performance: DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://app.cal.com">
+    <link rel="preconnect" href="https://app.cal.com" crossorigin>
 </head>
 <body>
     <!-- Noise texture overlay - premium film feel -->
     <div class="noise-overlay" aria-hidden="true"></div>
 
+    <!-- Skip to content link for accessibility -->
+    <a href="#hero" class="skip-link">Skip to content</a>
+
     <!-- Navigation -->
-    <nav class="nav" id="nav">
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <img src="logo.png" alt="AbudiAuto" class="logo-img" width="120" height="44">
+                <img src="logo.png" alt="AbudiAuto - AI Automation Agency" class="logo-img" width="120" height="44" fetchpriority="high">
             </a>
 
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
@@ -147,6 +217,7 @@
         </div>
     </nav>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-bg">
@@ -955,7 +1026,7 @@
     </section>
 
     <!-- FAQ Section - Static for performance -->
-    <section class="faq" id="faq">
+    <section class="faq" id="faq" aria-label="Frequently Asked Questions">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">FAQ</span>
@@ -1050,8 +1121,10 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer - Static for performance -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
 
         <div class="container">
             <div class="footer-main">
