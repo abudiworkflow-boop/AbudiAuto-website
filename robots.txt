@@ -1,0 +1,6 @@
+# AbudiAuto - robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://abudiauto.com/sitemap.xml
