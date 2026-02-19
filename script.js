@@ -267,6 +267,32 @@
     }
 
     // --------------------------------------------------------------------------
+    // Active nav link highlighting on scroll
+    // --------------------------------------------------------------------------
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link:not(.nav-cta)');
+
+    if (sections.length > 0 && navLinks.length > 0) {
+        const sectionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(function(link) {
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-40% 0px -60% 0px',
+            threshold: 0
+        });
+
+        sections.forEach(function(section) {
+            sectionObserver.observe(section);
+        });
+    }
+
+    // --------------------------------------------------------------------------
     // LIVE EFFECTS - Lightweight and smooth!
     // --------------------------------------------------------------------------
 

@@ -392,6 +392,12 @@ ul, ol { list-style: none; }
     height: 8px;
     background: var(--color-primary);
     border-radius: 50%;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(107, 140, 168, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(107, 140, 168, 0); }
 }
 
 .hero-title {
@@ -487,6 +493,12 @@ ul, ol { list-style: none; }
     height: 8px;
     background: var(--color-primary);
     border-radius: var(--radius-full);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { top: 8px; opacity: 1; }
+    50% { top: 20px; opacity: 0.3; }
 }
 
 /* --------------------------------------------------------------------------
@@ -821,7 +833,7 @@ section {
    -------------------------------------------------------------------------- */
 .automation-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
@@ -1479,7 +1491,7 @@ section {
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .arch-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
-    .automation-grid { grid-template-columns: repeat(3, 1fr); }
+    .automation-grid { grid-template-columns: repeat(2, 1fr); }
     .transform-cards { grid-template-columns: repeat(2, 1fr); }
     .transform-card:last-child { grid-column: span 2; max-width: 50%; margin: 0 auto; }
     .proof-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1532,8 +1544,11 @@ section {
     .nav-link { font-size: 1.125rem; padding: 0.75rem 0; }
     .nav-cta { margin-top: 1rem; }
 
+    .hero { padding: 5rem 0 3rem; }
     .hero-stats { flex-direction: column; gap: 1.5rem; }
     .stat-divider { width: 60px; height: 1px; }
+    .hero-scroll { display: none; }
+    .hero-cta { margin-bottom: 2.5rem; }
 
     .transform-cards { grid-template-columns: 1fr; }
     .transform-card:last-child { grid-column: span 1; max-width: 100%; }
@@ -1976,18 +1991,6 @@ section {
     }
 }
 
-/* Gradient shift animation for hero */
-.hero {
-    --gradient-angle: 0deg;
-}
-
-.hero-glow {
-    background: conic-gradient(from var(--gradient-angle, 0deg),
-        rgba(107, 140, 168, 0.3),
-        rgba(125, 211, 252, 0.3),
-        rgba(107, 140, 168, 0.3));
-    transition: background 0.5s ease;
-}
 
 /* Stars animation */
 .stars svg {
